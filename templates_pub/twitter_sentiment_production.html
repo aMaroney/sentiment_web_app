@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Twitter Sentiment Search</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Lato", sans-serif}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-blue w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+    <a href="http://127.0.0.1:5000/static/about.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ABOUT</a>
+<!--    <a href="#tour" class="w3-bar-item w3-button w3-padding-large w3-hide-small">TOUR</a>-->
+    <a href="http://127.0.0.1:5000/static/contact.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="#" class="w3-bar-item w3-button">Github</a>
+        <a href="#" class="w3-bar-item w3-button">Personal Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="navDemo" class="w3-bar-block blue w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">ABOUT</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
+</div>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+
+  <!-- The Main Section -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+    <h2 class="w3-wide">TWITTER SENTIMENT INDEX</h2>
+    <p class="w3-opacity"><i>Enter the twitter users username and a search term!</i></p>
+
+<div class="container">
+
+
+  <form  action="" method="post" role="form">
+    <div class="form-group">
+      <label style="font-size:1vw" class="" for="twitter_user_field">Twitter User</label>
+      <input type="text" class="w3-input w3-border" id="twitter_user_field" name="name" placeholder="What's the twitter user handle?">
+      <br>
+      <label style="font-size:1vw" class="" for="search_term_field">Search Term</label>
+      <input type="text" class="w3-input w3-border" id="search_term_field" name="email" placeholder="What's the search term?.">
+
+    </div>
+    <br>
+    <button type="submit" class="w3-btn w3-blue">Search</button>
+  </form>
+
+  <br>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+
+    {% for message in messages %}
+        {% if "Error" not in message[1]: %}
+            <div class="w3-bar w3-yellow w3-card" style="font-size:180%">
+            <strong>Success! </strong> {{ message[1] }}
+            </div>
+        {% endif %}
+
+        {% if "Error" in message[1]: %}
+            <div class="alert alert-warning">
+            {{ message[1] }}
+            </div>
+        {% endif %}
+    {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+</div>
+    <br>
+
+
+
+
+
+    <div class="w3-row w3-padding-32">
+      <div class="w3-third">
+        <p>realDonaldTrump</p>
+        <img src="/static/realDonaldTrump.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
+      </div>
+      <div class="w3-third">
+        <p>BarackObama</p>
+        <img src="/static/BarackObama.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
+      </div>
+      <div class="w3-third">
+        <p>KimKardashian</p>
+        <img src="/static/KimKardashian.jpg" class="w3-round" alt="Random Name" style="width:60%">
+      </div>
+    </div>
+  </div>
+
+  <!-- The Tour Section -->
+  <div class="w3-blue" id="tour">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+    </div>
+  </div>
+
+  <!-- The Contact Section -->
+  <div class="w3-container w3-content w3-padding-64 w3-center" style="max-width:800px" id="contact">
+    <h2 class="w3-wide w3-center">CONTACT</h2>
+    <p class="w3-opacity w3-center"><i>Questions or comments?</i></p>
+    <div class="w3-row w3-center w3-padding-32">
+<!--      <div class="w3-col m6 w3-large w3-margin-bottom">-->
+<!--        <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>-->
+<!--      </div>-->
+      <div class="w3-center">
+        <form action="/action_page.php" target="_blank">
+          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+            </div>
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+            </div>
+          </div>
+          <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+          <button class="w3-button w3-blue w3-section w3-right" type="submit">SEND</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+<!-- End Page Content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+</footer>
+
+</body>
+</html>
+
